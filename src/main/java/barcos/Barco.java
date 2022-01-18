@@ -1,22 +1,46 @@
 package barcos;
 
+import utils.Coordenadas;
+
 public class Barco {
 
-    private int posX;
-    private int posY;
+    private int longitud;
+    private Coordenadas[] coordenadas;
 
-    public int getPosX() {
-        return posX;
+    public Barco(int longitud){
+        this.longitud = longitud;
+        this.coordenadas = new Coordenadas[longitud];
+
     }
-    public void setPosX(int posX) {
-        this.posX = posX;
+
+    public Barco() {
     }
-    public int getPosY() {
-        return posY;
+
+    public int getLongitud() {
+        return longitud;
     }
-    public void setPosY(int posY) {
-        this.posY = posY;
+
+    public void setLongitud(int longitud) {
+        this.longitud = longitud;
     }
-    
+
+    public Coordenadas[] getCoordenadas() {
+        return coordenadas;
+    }
+
+    public void setCoordenadas(Coordenadas[] coordenadas) {
+        this.coordenadas = coordenadas;
+    }
+
+    public boolean tocado(int x, int y){
+        for (int i = 0; i < coordenadas.length; i++) {
+            
+            if (this.coordenadas[i].getX() == x && this.coordenadas[i].getY() == y){
+                return true;
+
+            }
+        }
+        return false;
+    }
     
 }
