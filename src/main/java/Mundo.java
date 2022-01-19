@@ -42,9 +42,6 @@ public class Mundo {
 
     public static void generarBarcos() {
 
-        boolean subma = false;
-        boolean transa = false;
-
         ArrayList<Barco> barcoList = new ArrayList<>();
 
         Coordenadas[] coordenadasYate1 = new Coordenadas[1];
@@ -102,8 +99,13 @@ public class Mundo {
 
             coorSubma1 = new Coordenadas(x, y);
 
-            coordenadasSubma1[incre] = coorSubma1;
-            incre++;
+            if (!comprobrarSiExiste(barcoList, coorSubma1)) {
+
+                coordenadasTransa2[incre] = coorSubma1;
+                incre++;
+            } else {
+                System.out.println("Los valores ya tienen un Barco añadido");
+            }
 
         }
         submarino1.setCoordenadas(coordenadasSubma1);
@@ -119,8 +121,13 @@ public class Mundo {
 
             coorSubma2 = new Coordenadas(x, y);
 
-            coordenadasSubma2[incre] = coorSubma2;
-            incre++;
+            if (!comprobrarSiExiste(barcoList, coorSubma2)) {
+
+                coordenadasTransa2[incre] = coorSubma2;
+                incre++;
+            } else {
+                System.out.println("Los valores ya tienen un Barco añadido");
+            }
 
         }
         submarino2.setCoordenadas(coordenadasSubma2);
@@ -137,8 +144,13 @@ public class Mundo {
 
             coorTransa1 = new Coordenadas(x, y);
 
-            coordenadasTransa1[incre] = coorTransa1;
-            incre++;
+            if (!comprobrarSiExiste(barcoList, coorTransa1)) {
+
+                coordenadasTransa2[incre] = coorTransa1;
+                incre++;
+            } else {
+                System.out.println("Los valores ya tienen un Barco añadido");
+            }
 
         }
         transatlantico1.setCoordenadas(coordenadasTransa1);
@@ -155,8 +167,13 @@ public class Mundo {
 
             coorTransa2 = new Coordenadas(x, y);
 
-            coordenadasTransa2[incre] = coorTransa2;
-            incre++;
+            if (!comprobrarSiExiste(barcoList, coorTransa2)) {
+
+                coordenadasTransa2[incre] = coorTransa2;
+                incre++;
+            } else {
+                System.out.println("Los valores ya tienen un Barco añadido");
+            }
 
         }
         transatlantico2.setCoordenadas(coordenadasTransa2);
@@ -168,13 +185,50 @@ public class Mundo {
         barcoList.add(transatlantico1);
         barcoList.add(transatlantico2);
 
-        
-        if(jugador1.disparar(barcoList)){
-            System.out.println("Has acertado");
-        }else{
-            System.out.println("Has fallado");
+        int barcoTotalJ1 = 0;
+
+        while (barcoTotalJ1 < 12) {
+
+            if (jugador1.disparar(barcoList)) {
+                System.out.println("Has acertado");
+                barcoTotalJ1++;
+            } else {
+                System.out.println("Has fallado");
+            }
+
         }
 
+        // int barcoTotalJ2 = 0;
+
+        // while (barcoTotalJ2 < 6) {
+
+        // if (jugador1.disparar(barcoList)) {
+        // System.out.println("Has acertado");
+        // barcoTotalJ2++;
+        // } else {
+        // System.out.println("Has fallado");
+        // }
+
+        // }
+
+    }
+
+    public static boolean comprobrarSiExiste(ArrayList<Barco> arrayBarco, Coordenadas coordenadas) {
+
+        boolean existe = false;
+
+        while (!existe) {
+
+            for (Barco barco : arrayBarco) {
+                for (Coordenadas coordenada : barco.getCoordenadas()) {
+                    if (coordenada.getX() == coordenadas.getX() && coordenada.getY() == coordenadas.getY()) {
+                        existe = true;
+                    }
+                }
+            }
+        }
+
+        return existe;
     }
 
 }
