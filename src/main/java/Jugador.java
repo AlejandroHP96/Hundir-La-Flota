@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import barcos.Barco;
+import utils.Coordenadas;
 
 public class Jugador {
 
@@ -19,12 +20,12 @@ public class Jugador {
         this.mundo = mundo;
     }
 
-    public boolean disparar(ArrayList barcos) {
+    public boolean disparar(ArrayList<Barco> barcoList) {
 
         Scanner in = new Scanner(System.in);
-        int disparoX, disparoY;
+        int disparoX, disparoY,tocado = 0;
 
-        Barco barco = new Barco();
+        System.out.println("Introduce las coordenadas de Disparo:");
 
         System.out.println("Introduce la X");
         disparoX = in.nextInt();
@@ -32,13 +33,19 @@ public class Jugador {
         System.out.println("Introduce la Y");
         disparoY = in.nextInt();
 
-        if (barco.tocado(disparoX, disparoY) == true) {
-            System.out.println("Has acertado");
+        for (Barco barco : barcoList) {
+            for (Coordenadas coordenada : barco.getCoordenadas()) {
+
+                if (coordenada.getX() == disparoX && coordenada.getY() == disparoY) {
+                    tocado = 1;
+                }
+            }
+        }
+        if (tocado == 1) {
             return true;
-        } else {
-            System.out.println("Has fallado");
+        }else{
             return false;
         }
-         
+
     }
 }
