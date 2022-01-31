@@ -14,8 +14,8 @@ public class Mundo {
     public static void crearTablero() {
 
         String[][] tablero = new String[10][10];
-        String[] letras = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
-        String[] numeros = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" };
+        String[] letras = { "  A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
+        String[] numeros = { "1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "10" };
 
         for (int i = 0; i < letras.length; i++) {
             System.out.print(" " + letras[i] + " ");
@@ -68,11 +68,15 @@ public class Mundo {
 
         int x, y;
 
+        String letraX;
+
         System.out.println("Jugador 1:");
         System.out.println("Introduce la posición del Yate");
-        x = in.nextInt();
+        letraX = in.next();
         y = in.nextInt();
-        coorYate1 = new Coordenadas(x, y);
+
+        x = cambiarLetra(letraX);
+        coorYate1 = new Coordenadas(x, --y);
 
         modificarTablero(coorYate1, "Y", false);
         coordenadasYate1[0] = coorYate1;
@@ -80,15 +84,17 @@ public class Mundo {
 
         int incre = 0;
 
-        System.out.println("Introduce las posiciones del Primer Submarino");
+        System.out.println("Introduce las posiciones del Submarino");
         while (incre < 2) {
 
             System.out.print("X: ");
-            x = in.nextInt();
+            letraX = in.next();
             System.out.print("Y: ");
             y = in.nextInt();
 
-            coorSubma1 = new Coordenadas(x, y);
+            x = cambiarLetra(letraX);
+
+            coorSubma1 = new Coordenadas(x, --y);
             modificarTablero(coorSubma1, "S", false);
 
             coordenadasSubma1[incre] = coorSubma1;
@@ -98,16 +104,18 @@ public class Mundo {
         submarino1.setCoordenadas(coordenadasSubma1);
 
         incre = 0;
-        System.out.println("Introduce las posiciones del Primer Transatlantico");
+        System.out.println("Introduce las posiciones del Transatlantico");
 
         while (incre < 3) {
 
             System.out.print("X: ");
-            x = in.nextInt();
+            letraX = in.next();
             System.out.print("Y: ");
             y = in.nextInt();
 
-            coorTransa1 = new Coordenadas(x, y);
+            x = cambiarLetra(letraX);
+
+            coorTransa1 = new Coordenadas(x, --y);
 
             coordenadasTransa1[incre] = coorTransa1;
             incre++;
@@ -115,30 +123,33 @@ public class Mundo {
         }
         transatlantico1.setCoordenadas(coordenadasTransa1);
 
-        System.out.println("----------------------------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------\n");
 
         System.out.println("Jugador 2:");
-        System.out.println("Introduce la posición del Segundo Yate");
+        System.out.println("Introduce la posición del Yate");
         System.out.print("X: ");
-        x = in.nextInt();
+        letraX = in.next();
         System.out.print("Y: ");
         y = in.nextInt();
 
-        coorYate2 = new Coordenadas(x, y);
+        x = cambiarLetra(letraX);
+        coorYate2 = new Coordenadas(x, --y);
 
         coordenadasYate2[0] = coorYate2;
         yate2.setCoordenadas(coordenadasYate2);
 
         incre = 0;
-        System.out.println("Introduce las posiciones del Segundo Submarino");
+        System.out.println("Introduce las posiciones del Submarino");
         while (incre < 2) {
 
             System.out.print("X: ");
-            x = in.nextInt();
+            letraX = in.next();
             System.out.print("Y: ");
             y = in.nextInt();
 
-            coorSubma2 = new Coordenadas(x, y);
+            x = cambiarLetra(letraX);
+
+            coorSubma2 = new Coordenadas(x, --y);
 
             coordenadasSubma2[incre] = coorSubma2;
             incre++;
@@ -147,16 +158,18 @@ public class Mundo {
         submarino2.setCoordenadas(coordenadasSubma2);
 
         incre = 0;
-        System.out.println("Introduce las posiciones del Segundo Transatlantico");
+        System.out.println("Introduce las posiciones del Transatlantico");
 
         while (incre < 3) {
 
             System.out.print("X: ");
-            x = in.nextInt();
+            letraX = in.next();
             System.out.print("Y: ");
             y = in.nextInt();
 
-            coorTransa2 = new Coordenadas(x, y);
+            x = cambiarLetra(letraX);
+
+            coorTransa2 = new Coordenadas(x, --y);
 
             coordenadasTransa2[incre] = coorTransa2;
             incre++;
@@ -231,12 +244,18 @@ public class Mundo {
             tablero[coordenadas.getX()][coordenadas.getY()] = " " + letra + " ";
         }
 
-
         if (usar) {
             for (int i = 0; i < letras.length; i++) {
                 System.out.print(" " + letras[i] + " ");
             }
             System.out.println("");
+
+            for (int i = 0; i < tablero.length; i++) {
+                for (int j = 0; j < tablero[i].length; j++) {
+                    tablero[i][j] = " * ";
+
+                }
+            }
 
             for (int i = 0; i < tablero.length; i++) {
                 System.out.print(numeros[i]);
@@ -249,6 +268,54 @@ public class Mundo {
 
         }
 
+    }
+
+    public static int cambiarLetra(String letra) {
+
+        int numero = 0;
+
+        switch (letra.toUpperCase()) {
+            case "A":
+                numero = 0;
+                break;
+
+            case "B":
+                numero = 1;
+                break;
+
+            case "C":
+                numero = 2;
+                break;
+
+            case "D":
+                numero = 0;
+                break;
+
+            case "E":
+                numero = 0;
+                break;
+
+            case "F":
+                numero = 0;
+                break;
+
+            case "G":
+                numero = 0;
+                break;
+
+            case "H":
+                numero = 0;
+                break;
+
+            case "I":
+                numero = 0;
+                break;
+
+            case "J":
+                numero = 0;
+                break;
+        }
+        return numero;
     }
 
 }
