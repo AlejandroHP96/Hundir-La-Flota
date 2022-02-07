@@ -11,7 +11,7 @@ public class Mundo {
     private static Jugador jugador1 = new Jugador();
     private static Jugador jugador2 = new Jugador();
 
-    public static void crearTablero() {
+    public void crearTablero() {
 
         String[][] tablero = new String[10][10];
         String[] letras = { "  A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
@@ -288,31 +288,31 @@ public class Mundo {
                 break;
 
             case "D":
-                numero = 0;
+                numero = 3;
                 break;
 
             case "E":
-                numero = 0;
+                numero = 4;
                 break;
 
             case "F":
-                numero = 0;
+                numero = 5;
                 break;
 
             case "G":
-                numero = 0;
+                numero = 6;
                 break;
 
             case "H":
-                numero = 0;
+                numero = 7;
                 break;
 
             case "I":
-                numero = 0;
+                numero = 8;
                 break;
 
             case "J":
-                numero = 0;
+                numero = 9;
                 break;
         }
         return numero;
