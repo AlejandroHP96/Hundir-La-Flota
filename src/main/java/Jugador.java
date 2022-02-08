@@ -20,24 +20,14 @@ public class Jugador {
         this.mundo = mundo;
     }
 
-    public boolean disparar(ArrayList<Barco> barcoList) {
+    public boolean disparar(ArrayList<Barco> barcoList, int x, int y) {
 
-        Scanner in = new Scanner(System.in);
-        int disparoY, tocado = 0;
-        String disparoX;
-
-        System.out.println("Introduce las coordenadas de Disparo:");
-
-        System.out.println("Introduce la X");
-        disparoX = in.nextLine();
-
-        System.out.println("Introduce la Y");
-        disparoY = in.nextInt();
+        int tocado = 0;
 
         for (Barco barco : barcoList) {
             for (Coordenadas coordenada : barco.getCoordenadas()) {
 
-                if (coordenada.getX() == Mundo.cambiarLetra(disparoX) && coordenada.getY() == disparoY) {
+                if (coordenada.getX() == x && coordenada.getY() == y) {
                     tocado = 1;
                 }
             }
