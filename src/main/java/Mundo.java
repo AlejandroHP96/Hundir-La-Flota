@@ -12,6 +12,8 @@ public class Mundo {
     private static Jugador jugador2 = new Jugador();
     private String[][] tablero1 = new String[10][10];
     private String[][] tablero2 = new String[10][10];
+    private ArrayList<Barco> barcoListJ1 = new ArrayList<>();
+    private ArrayList<Barco> barcoListJ2 = new ArrayList<>();
 
     public void mostrarTablero(String[][] tableroJugador) {
 
@@ -42,9 +44,6 @@ public class Mundo {
     }
 
     public void generarBarcos() {
-
-        ArrayList<Barco> barcoListJ1 = new ArrayList<>();
-        ArrayList<Barco> barcoListJ2 = new ArrayList<>();
 
         Coordenadas[] coordenadasYate1 = new Coordenadas[1];
         Coordenadas[] coordenadasYate2 = new Coordenadas[1];
@@ -214,13 +213,13 @@ public class Mundo {
                 System.out.println("Has acertado");
                 barcoTotalJ1++;
                 tablero2[Mundo.cambiarLetra(disparoX)][disparoY] = " X ";
+                removerCoordenada(barcoListJ2, x, y);
 
             } else {
                 System.out.println("Has fallado");
                 tablero2[Mundo.cambiarLetra(disparoX)][disparoY] = " ~ ";
-                tableroFinal(tablero1);
-                tableroFinal(tablero2);
             }
+            mostrar(barcoListJ2);
             System.out.println("-------------------------------------------------------");
 
             System.out.println("Jugador 2");
@@ -235,14 +234,13 @@ public class Mundo {
                 System.out.println("Has acertado");
                 tablero1[Mundo.cambiarLetra(disparoX)][disparoY] = "X";
                 barcoTotalJ2++;
-                tableroFinal(tablero1);
-                tableroFinal(tablero2);
+                removerCoordenada(barcoListJ1, x, y);
             } else {
                 System.out.println("Has fallado");
                 tablero1[Mundo.cambiarLetra(disparoX)][disparoY] = "~";
-                tableroFinal(tablero1);
-                tableroFinal(tablero2);
+
             }
+            mostrar(barcoListJ1);
 
         }
         if (barcoTotalJ1 < 6) {
@@ -299,6 +297,19 @@ public class Mundo {
         return existe;
     }
 
+    public void removerCoordenada(ArrayList<Barco> listaBarcos, int x, int y) {
+
+        for (Barco barco : listaBarcos) {
+            for (Coordenadas coordenada : barco.getCoordenadas()) {
+
+                if (coordenada.getX() == x && coordenada.getY() == y) {
+                    coordenada.setX(20);
+                    coordenada.setY(20);
+                }
+            }
+        }
+    }
+
     public static int cambiarLetra(String letra) {
 
         int numero = 0;
@@ -345,6 +356,16 @@ public class Mundo {
                 break;
         }
         return numero;
+    }
+
+    public void mostrar(ArrayList<Barco> lista) {
+        for (Barco barco : lista) {
+            for (Coordenadas coordenada : barco.getCoordenadas()) {
+                System.out.print(coordenada.getX() + " ");
+                System.out.println(coordenada.getY());
+            }
+        }
+
     }
 
 }
