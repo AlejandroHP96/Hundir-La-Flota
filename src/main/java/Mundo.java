@@ -80,8 +80,6 @@ public class Mundo {
         coorYate1 = new Coordenadas(x, --y);
         coordenadasYate1[0] = coorYate1;
         yate1.setCoordenadas(coordenadasYate1);
-        tablero1[x][y] = " Y ";
-        tableroFinal(tablero1);
 
         int incre = 0;
 
@@ -99,10 +97,8 @@ public class Mundo {
 
             coordenadasSubma1[incre] = coorSubma1;
             incre++;
-            tablero1[x][y] = " S ";
 
         }
-        tableroFinal(tablero1);
         submarino1.setCoordenadas(coordenadasSubma1);
 
         incre = 0;
@@ -121,7 +117,6 @@ public class Mundo {
 
             coordenadasTransa1[incre] = coorTransa1;
             incre++;
-            tablero1[x][y] = " T ";
 
         }
         transatlantico1.setCoordenadas(coordenadasTransa1);
@@ -140,7 +135,6 @@ public class Mundo {
 
         coordenadasYate2[0] = coorYate2;
         yate2.setCoordenadas(coordenadasYate2);
-        tablero2[x][y] = " Y ";
 
         incre = 0;
         System.out.println("Introduce las posiciones del Submarino");
@@ -157,7 +151,6 @@ public class Mundo {
 
             coordenadasSubma2[incre] = coorSubma2;
             incre++;
-            tablero2[x][y] = " S ";
 
         }
         submarino2.setCoordenadas(coordenadasSubma2);
@@ -178,7 +171,6 @@ public class Mundo {
 
             coordenadasTransa2[incre] = coorTransa2;
             incre++;
-            tablero2[x][y] = " T ";
 
         }
         transatlantico2.setCoordenadas(coordenadasTransa2);
@@ -209,38 +201,38 @@ public class Mundo {
 
             System.out.println("Introduce la Y");
             disparoY = in.nextInt();
-            if (jugador1.disparar(barcoListJ2, Mundo.cambiarLetra(disparoX), disparoY)) {
+            if (jugador1.disparar(barcoListJ2, Mundo.cambiarLetra(disparoX), --disparoY)) {
                 System.out.println("Has acertado");
                 barcoTotalJ1++;
                 tablero2[Mundo.cambiarLetra(disparoX)][disparoY] = " X ";
-                removerCoordenada(barcoListJ2, x, y);
+                removerCoordenada(barcoListJ2, Mundo.cambiarLetra(disparoX), disparoY);
 
             } else {
                 System.out.println("Has fallado");
                 tablero2[Mundo.cambiarLetra(disparoX)][disparoY] = " ~ ";
             }
-            mostrar(barcoListJ2);
+
             System.out.println("-------------------------------------------------------");
 
             System.out.println("Jugador 2");
             System.out.println("Introduce las coordenadas de Disparo:");
+            tableroFinal(tablero1);
 
             System.out.println("Introduce la X");
             disparoX = in.next();
 
             System.out.println("Introduce la Y");
             disparoY = in.nextInt();
-            if (jugador2.disparar(barcoListJ1, Mundo.cambiarLetra(disparoX), disparoY)) {
+            if (jugador2.disparar(barcoListJ1, Mundo.cambiarLetra(disparoX), --disparoY)) {
                 System.out.println("Has acertado");
-                tablero1[Mundo.cambiarLetra(disparoX)][disparoY] = "X";
+                tablero1[Mundo.cambiarLetra(disparoX)][disparoY] = " X ";
                 barcoTotalJ2++;
                 removerCoordenada(barcoListJ1, x, y);
             } else {
                 System.out.println("Has fallado");
-                tablero1[Mundo.cambiarLetra(disparoX)][disparoY] = "~";
+                tablero1[Mundo.cambiarLetra(disparoX)][disparoY] = " ~ ";
 
             }
-            mostrar(barcoListJ1);
 
         }
         if (barcoTotalJ1 < 6) {
@@ -356,16 +348,6 @@ public class Mundo {
                 break;
         }
         return numero;
-    }
-
-    public void mostrar(ArrayList<Barco> lista) {
-        for (Barco barco : lista) {
-            for (Coordenadas coordenada : barco.getCoordenadas()) {
-                System.out.print(coordenada.getX() + " ");
-                System.out.println(coordenada.getY());
-            }
-        }
-
     }
 
 }
