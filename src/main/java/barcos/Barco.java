@@ -7,7 +7,7 @@ public class Barco {
     private int longitud;
     private Coordenadas[] coordenadas;
 
-    public Barco(int longitud){
+    public Barco(int longitud) {
         this.longitud = longitud;
         this.coordenadas = new Coordenadas[longitud];
 
@@ -20,10 +20,6 @@ public class Barco {
         return longitud;
     }
 
-    public void setLongitud(int longitud) {
-        this.longitud = longitud;
-    }
-
     public Coordenadas[] getCoordenadas() {
         return coordenadas;
     }
@@ -32,15 +28,15 @@ public class Barco {
         this.coordenadas = coordenadas;
     }
 
-    public boolean tocado(int x, int y){
+    public boolean tocado(int x, int y) {
         for (int i = 0; i < coordenadas.length; i++) {
-            
-            if (this.coordenadas[i].getX() == x && this.coordenadas[i].getY() == y){
+
+            if (this.coordenadas[i].getX() == x && this.coordenadas[i].getY() == y) {
                 return true;
 
             }
         }
         return false;
     }
-    
+
 }
