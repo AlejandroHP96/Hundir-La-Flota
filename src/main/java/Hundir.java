@@ -1,10 +1,7 @@
-import java.util.Scanner;
-
 public class Hundir {
     public static void main(String[] args) {
 
         Mundo mundo = new Mundo();
-        Scanner in = new Scanner(System.in);
         String[][] inicioTablero = new String[10][10];
 
         System.out.println("Tablero");

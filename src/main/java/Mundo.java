@@ -201,6 +201,7 @@ public class Mundo {
 
             System.out.println("Introduce la Y");
             disparoY = in.nextInt();
+            System.out.println("");
             if (jugador1.disparar(barcoListJ2, Mundo.cambiarLetra(disparoX), --disparoY)) {
                 System.out.println("Has acertado");
                 barcoTotalJ1++;
@@ -223,11 +224,12 @@ public class Mundo {
 
             System.out.println("Introduce la Y");
             disparoY = in.nextInt();
+            System.out.println("");
             if (jugador2.disparar(barcoListJ1, Mundo.cambiarLetra(disparoX), --disparoY)) {
                 System.out.println("Has acertado");
                 tablero1[Mundo.cambiarLetra(disparoX)][disparoY] = " X ";
                 barcoTotalJ2++;
-                removerCoordenada(barcoListJ1, x, y);
+                removerCoordenada(barcoListJ1, Mundo.cambiarLetra(disparoX), disparoY);
             } else {
                 System.out.println("Has fallado");
                 tablero1[Mundo.cambiarLetra(disparoX)][disparoY] = " ~ ";
@@ -240,6 +242,7 @@ public class Mundo {
         } else {
             System.out.println("Ganó el Jugador 1");
         }
+        in.close();
 
     }
 
